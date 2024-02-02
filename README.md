@@ -310,3 +310,74 @@ for pat in pattern:
                     content= data.read()
                     fetch=re.search(file, content)
                     print(fetch)
+import re
+#to search a pattern with one extra characters with two possibilities, when any one of the both will be match first occurance will be printed in re.search
+email_data = "tarun <dandatarun@gmail.com>, vinay <dandavinay.gmail.com>, danda <tarundanda@gmail.com>, vinu <vinu@gmail.com>, vinu01 <vinu01@gmail.com>"
+result = re.search("vin[a, u]", email_data)
+print(result)
+#to search a pattern with one extra characters containing two possibilities, when any one of the both will be match first occurance will be printed in re.search but we can search pattern in case insensitive by using "re.IGNORECASE
+result = re.search("Vin[a, u]", email_data, re.IGNORECASE) 
+print(result)
+#to search a pattern with one extra character containing all the alphabets and print the first matching occurance
+result = re.search("vin[a-z]", email_data)
+print(result)
+#to search a pattern with one extra character containing all the alphabets and print all matching occurances
+result = re.findall("vin[a-z]", email_data)
+print(result)
+#to search a string starts with the pattern that can containing all the alphabets and print the first occurance of string that matches with the pattern
+result = re.search("vi[a-z]+", email_data)
+print(result)
+#to search a string starts with the pattern that can containing all the alphabets and numbers to print the first occurance of string that matches with the pattern
+result = re.search("vi[a-z]+[0-9]+", email_data)
+print(result)
+#To search any mail id we provided the general syntax of mail as the pattern
+result = re.search(r"[A-Za-z0-9_]+@[A-Za-z0-9]+\.[A-Za-z0-9]+", email_data)
+print(result)
+#To search any mail id we provided the general syntax of mail as the pattern and better approach to mention a pattern
+result = re.findall(r"\w+@\w+\.\w+", email_data)
+print(result)
+
+__________________________________
+example of mentioning a mail syntax
+dandatarun@gmail.com
+for user name it includes alphabets or digits or underscore
+[A-Za-z0-9_]+@[A-Za-z0-9]+\.[A-Za-z0-9]+
+danda.tarun@gmail.com
+[A-Za-z0-9_]+\.[A-Za-z0-9_]+@[A-Za-z0-9]+\.[A-Za-z0-9]+
+__________________________________
+
+
+find_pattern
+if we want to use the user defined function we need to take care of below points
+1-Before calling the function, we need to define the function
+Syntax-	def function_name(arguments1, arguments2):
+		statment1
+		statment2
+		return value1, value2
+It is not mandatory to pass argumrnts and to return values
+example:
+import re
+def find_pattern(pattern, data):
+    res = re.findall(rf"{pattern}", data)
+    return res
+
+pat = "\w+@\w+\.\w+"
+mat = "d\w+a"
+name1 = "d\w+n"
+name2 = "d\w+y"
+
+email_data = "tarun <dandatarun@gmail.com>, vinay <dandavinay.gmail.com>, danda <tarundanda@gmail.com>, vinu <vinu@gmail.com>, vinu01 <vinu01@gmail.com>"
+result = find_pattern(pat, email_data)
+print(result)
+result = find_pattern(mat, email_data)
+print(result)
+result = find_pattern(name1, email_data)
+print(result)
+result = find_pattern(name2, email_data)
+print(result)
+
+2-We need to call a function to execute
+Syntax-	val1, val2 = function_name(arg1, arg2)
+The number of arguments passed will always match the no.of arguments and type in the function defination similarly same for return.
+
+      
